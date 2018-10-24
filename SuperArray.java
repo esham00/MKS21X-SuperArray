@@ -5,16 +5,16 @@ public class SuperArray {
 		if (s > 10) {
 			s = 10;
 		}
-		size = s;
-		data = new String[size];
+		size = 0;
+		data = new String[s];
 	}
 	public SuperArray() {
-		size = 10;
-		data = new String[size];
+		size = 0;
+		data = new String[10];
 	}
 	public void clear() {
 		size = 0;
-		data = new String[size];
+		data = new String[1];
 	}
 	public int size() {
 		return size;
@@ -24,15 +24,16 @@ public class SuperArray {
 		else {return false;}
 	}
 	public boolean add(String element) {
-		if (size == 0) {
+		if (data.length == 0) {
 			resize();
 		}
-		for(int i = 0; i < size; i++) {
+		for(int i = 0; i < data.length; i++) {
 			if (data[i] == null) {
 				data[i] = element;
+				size++;
 				return true;
 			}
-			if (data[size-1] != null) {
+			else if (data[data.length-1] != null) {
 				resize();
 				i = -1;
 			}
@@ -41,7 +42,7 @@ public class SuperArray {
 	}
 	public String toString() {
 		String brandnew = "[";
-		for(int i = 0; i < size; i++) {
+		for(int i = 0; i < data.length; i++) {
 			if (data[i] == null) {
 				i++;
 			}
@@ -57,7 +58,7 @@ public class SuperArray {
 	}
 	public String toStringDebug() {
 		String brandnew = "[";
-		for(int i = 0; i < size; i++) {
+		for(int i = 0; i < data.length; i++) {
 			if (i == 0) {
 				brandnew += data[i];
 			}
@@ -83,14 +84,12 @@ public class SuperArray {
 		return oldElement;
 	}
 	private void resize() {
-		if (size == 0) {
-			size = 1;
-			data = new String[size];
+		String[] original = new String[data.length];
+		for (int i = 0; i < data.length; i++) {
+			original[i] = data[i];
 		}
-		size++;
-		String[] original = new String[size-1];
-		data = new String[size];
-		for (int i = 0; i < size-1; i++) {
+		data = new String[data.length+10];
+		for (int i = 0; i < original.length; i++) {
 			data[i] = original[i];
 		}
 	}
