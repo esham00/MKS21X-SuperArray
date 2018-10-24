@@ -29,5 +29,15 @@ public class Driver {
       sad.add("sad");
     }
     System.out.println(sad + ": should have 10 values");
+    System.out.println(sad.contains("sad") + ": true");
+    System.out.println(sad.contains("happy") + ": false");
+    System.out.println(happy.contains("a") + ": false");
+    System.out.println(sad.indexOf("sad") + ": 2");
+    System.out.println(sad.indexOf("happy") + ": -1");
+    System.out.println(happy.indexOf("a") + ": -1");
+    System.out.println(sad.lastIndexOf("sad") + ": 9");
+    System.out.println(sad.lastIndexOf("happy") + ": -1");
+    System.out.println(happy.lastIndexOf("a") + ": -1");
+
   }
 }

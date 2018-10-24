@@ -93,4 +93,29 @@ public class SuperArray {
 			data[i] = original[i];
 		}
 	}
+	public boolean contains(String target) {
+		for (int i = 0; i < size; i++) {
+			if (data[i] == target) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public int indexOf(String target) {
+		for (int i = 0; i < size; i++) {
+			if (data[i] == target) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public int lastIndexOf(String target) {
+		int lastI = -1;
+		for (int i = 0; i < size; i++) {
+			if (data[i] == target) {
+				lastI = i;
+			}
+		}
+		return lastI;
+	}
 }
