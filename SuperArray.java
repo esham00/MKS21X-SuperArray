@@ -42,11 +42,8 @@ public class SuperArray {
 	}
 	public String toString() {
 		String brandnew = "[";
-		for(int i = 0; i < data.length; i++) {
-			if (data[i] == null) {
-				i++;
-			}
-			else if (i == 0) {
+		for(int i = 0; i < size; i++) {
+		  if (i == 0) {
 				brandnew += data[i];
 			}
 			else {
