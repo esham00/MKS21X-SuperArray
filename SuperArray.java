@@ -115,4 +115,19 @@ public class SuperArray {
 		}
 		return lastI;
 	}
+	public void add(int index, String element) {
+		size++;
+		if (data.length == 1 || index == data.length || data[data.length-1] != null) {
+			resize();
+		}
+		for (int i = 0; i < size-1; i++) {
+			if (i >= index) {
+				String old = data[i];
+				data[i+1] = old;
+			}
+			if (i == index) {
+				data[i] = element;
+			}
+		}
+	}
 }
