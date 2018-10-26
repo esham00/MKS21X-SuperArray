@@ -156,4 +156,13 @@ public class SuperArray {
 		size -= 1;
 		return elementRemoved;
 	}
+	public boolean remove(String element) {
+		for (int i = 0; i < size; i++) {
+			if (data[i] == element) {
+				remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
 }
