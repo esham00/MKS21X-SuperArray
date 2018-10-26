@@ -117,10 +117,10 @@ public class SuperArray {
 	}
 	public void add(int index, String element) {
 		if (index < 0 || index >= size) {
-			System.out.println("error"); //replace w better error message
+			System.out.println("error"); //replace w better error message, function still runs and produces unwanted results
 		}
 		if (data.length == 1 || index == data.length || data[data.length-1] != null) {
-			resize();
+			resize();//must add this bc function still runs even if index is larger or equal to size so (since the function isn't exited bc there's not proper error message)
 		}
 		String[] old = new String[data.length];
 		for (int i = 0; i < size; i++) {
@@ -145,12 +145,15 @@ public class SuperArray {
 		}
 		String elementRemoved = data[index];
 		String[] old = new String[data.length];
+		for (int i =0; i < size; i++) {
+			old[i] = data[i];
+		}
 		for (int i = 0; i < size-1; i++) {
 			if (i < index) {
 				data[i] = old [i];
 			}
 			if (i >= index) {
-				data[i-1] = old[i];
+				data[i] = old[i+1];
 			}
 		}
 		size -= 1;
