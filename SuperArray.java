@@ -35,7 +35,7 @@ public class SuperArray {
 			}
 			else if (data[data.length-1] != null) {
 				resize();
-				i = -1;
+				i = 0;
 			}
 		}
 		return false;
@@ -116,18 +116,44 @@ public class SuperArray {
 		return lastI;
 	}
 	public void add(int index, String element) {
-		size++;
+		if (index < 0 || index >= size) {
+			System.out.println("error"); //replace w better error message
+		}
 		if (data.length == 1 || index == data.length || data[data.length-1] != null) {
 			resize();
 		}
+		String[] old = new String[data.length];
+		for (int i = 0; i < size; i++) {
+			old[i] = data[i];
+		}
+		size++;
 		for (int i = 0; i < size-1; i++) {
 			if (i >= index) {
-				String old = data[i];
-				data[i+1] = old;
+				data[i+1] = old[i];
+			}
+			else if (i < index) {
+				data[i] = old [i];
 			}
 			if (i == index) {
 				data[i] = element;
 			}
 		}
+	}
+	public String remove(int index) {
+		if (index < 0 || index >= size) {
+			return null;
+		}
+		String elementRemoved = data[index];
+		String[] old = new String[data.length];
+		for (int i = 0; i < size-1; i++) {
+			if (i < index) {
+				data[i] = old [i];
+			}
+			if (i >= index) {
+				data[i-1] = old[i];
+			}
+		}
+		size -= 1;
+		return elementRemoved;
 	}
 }
