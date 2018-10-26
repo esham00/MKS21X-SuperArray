@@ -38,6 +38,13 @@ public class Driver {
     System.out.println(sad.lastIndexOf("sad") + ": 9");
     System.out.println(sad.lastIndexOf("happy") + ": -1");
     System.out.println(happy.lastIndexOf("a") + ": -1");
-
+    sad.add(3, "life");
+    System.out.println(sad.size());
+    sad.add(10, "life");
+    happy.add(2, "life");
+    happy.add(1, "life");
+    System.out.println(sad);
+    System.out.println(happy);
+    sad.add(200, "life");
   }
 }
