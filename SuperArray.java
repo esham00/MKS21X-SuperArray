@@ -145,23 +145,34 @@ public class SuperArray {
 		}
 		String elementRemoved = data[index];
 		String[] old = new String[data.length];
-		for (int i =0; i < index; i++) {
-			old[i] = data[i];
+		for (int i = 0; i < data.length; i++) {
+			old [i] = data[i];
 		}
-		for (int i = index; i < size-1; i++) {
-			sdata[i] = old [i+1];
-			}
+		for (int i = 0; i < index; i++) {
+			data[i] = old[i];
+		}
+		for (int i = index+1; i < size; i++) {
+			data[i-1] = old [i];
 		}
 		size -= 1;
 		return elementRemoved;
 	}
 	public boolean remove(String element) {
+		int index = indexOf(element);
+		String[] old = new String[data.length];
 		for (int i = 0; i < size; i++) {
-			if (data[i].equals(element)) {
-				remove(i);
-				return true;
-			}
+			old[i] = data[i];
 		}
-		return false;
+		if (index < 0 || index >= size) {
+			return false;
+		}
+		for (int i = 0; i < index; i++) {
+			data[i] = old[i];
+		}
+		for (int i = index+1; i < size; i++) {
+			data[i-1] = old[i];
+		}
+		size -= 1;
+		return true;
 	}
 }

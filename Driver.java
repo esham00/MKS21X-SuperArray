@@ -45,14 +45,11 @@ public class Driver {
     happy.add(1, "life");
     System.out.println(sad);
     System.out.println(happy);
-    sad.add(200, "life");
-    System.out.print(": error");
     sad.remove("life");
     sad.remove(1);
     happy.remove(3);
     happy.remove(2);
     System.out.println(sad);
     System.out.println(happy);
-    sad.remove(200);
   }
 }
