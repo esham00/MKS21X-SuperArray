@@ -145,15 +145,11 @@ public class SuperArray {
 		}
 		String elementRemoved = data[index];
 		String[] old = new String[data.length];
-		for (int i =0; i < size; i++) {
+		for (int i =0; i < index; i++) {
 			old[i] = data[i];
 		}
-		for (int i = 0; i < size-1; i++) {
-			if (i < index) {
-				data[i] = old [i];
-			}
-			if (i >= index) {
-				data[i] = old[i+1];
+		for (int i = index; i < size-1; i++) {
+			sdata[i] = old [i+1];
 			}
 		}
 		size -= 1;
