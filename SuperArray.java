@@ -1,13 +1,31 @@
+import java.util.NoSuchElementException;
 public class SuperArray {
 	private String[] data;
 	private int size;
-	public SuperArray (int s) {
+	/*public SuperArray(int startingCapacity) {
+		if (startingCapacity == 0) {
+			data = new String[1];
+		}
+		data = new String[startingCapacity];
+	}*/
+	public SuperArray(int initialCapacity) {
+		if (initialCapacity < 0) {
+			throw new IllegalArgumentException("Your array size cannot be lower than zero");
+		}
+		else if (initialCapacity == 0) {
+			data = new String[1];
+		}
+		else {
+			data = new String[initialCapacity];
+		}
+	}
+	/*public SuperArray (int s) {
 		if (s > 10) {
 			s = 10;
 		}
 		size = 0;
 		data = new String[s];
-	}
+	}*/
 	public SuperArray() {
 		size = 0;
 		data = new String[10];
@@ -68,13 +86,13 @@ public class SuperArray {
 	}
 	public String get(int index) {
 		if (index < 0 || index >= size) {
-			return null;
+			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
 		return data[index];
 	}
 	public String set(int index, String element) {
 		if (index < 0 || index >= size) {
-			return null;
+			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
 		String oldElement = data[index];
 		data[index] = element;
@@ -117,7 +135,7 @@ public class SuperArray {
 	}
 	public void add(int index, String element) {
 		if (index < 0 || index >= size) {
-			System.out.println("error"); //replace w better error message, function still runs and produces unwanted results
+			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
 		if (data.length == 1 || index == data.length || data[data.length-1] != null) {
 			resize();//must add this bc function still runs even if index is larger or equal to size so (since the function isn't exited bc there's not proper error message)
@@ -141,7 +159,7 @@ public class SuperArray {
 	}
 	public String remove(int index) {
 		if (index < 0 || index >= size) {
-			return null;
+			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
 		String elementRemoved = data[index];
 		String[] old = new String[data.length];
@@ -159,12 +177,12 @@ public class SuperArray {
 	}
 	public boolean remove(String element) {
 		int index = indexOf(element);
+		if (index < 0) {
+			throw new NoSuchElementException("That's not an element in your array");
+		}
 		String[] old = new String[data.length];
 		for (int i = 0; i < size; i++) {
 			old[i] = data[i];
-		}
-		if (index < 0 || index >= size) {
-			return false;
 		}
 		for (int i = 0; i < index; i++) {
 			data[i] = old[i];
