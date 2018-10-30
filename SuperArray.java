@@ -88,15 +88,19 @@ public class SuperArray {
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
-		return data[index];
+		else {
+			return data[index];
+		}
 	}
 	public String set(int index, String element) {
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
-		String oldElement = data[index];
-		data[index] = element;
-		return oldElement;
+		else {
+			String oldElement = data[index];
+			data[index] = element;
+			return oldElement;
+		}
 	}
 	private void resize() {
 		String[] original = new String[data.length];
@@ -178,7 +182,7 @@ public class SuperArray {
 	public boolean remove(String element) {
 		int index = indexOf(element);
 		if (index < 0) {
-			throw new NoSuchElementException("That's not an element in your array");
+			return false;
 		}
 		String[] old = new String[data.length];
 		for (int i = 0; i < size; i++) {

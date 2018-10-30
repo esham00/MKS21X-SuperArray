@@ -1,8 +1,16 @@
+import java.util.NoSuchElementException;
 public class Driver {
   public static void main(String[] args) {
-    SuperArray sad, happy;
+    SuperArray sad = new SuperArray();
+    SuperArray happy = new SuperArray();
+    try{
     sad = new SuperArray(5);
+    happy = new SuperArray(-20);
+    System.out.print(": IllegalArgumentException");
     happy = new SuperArray();
+  } catch (IllegalArgumentException e) {
+    e.printStackTrace();
+  }
     System.out.println(sad.size() + ": 0");
     System.out.println(happy.size() + ": 0");
     sad.add("homework");
@@ -22,8 +30,17 @@ public class Driver {
     System.out.println(happy.toStringDebug() + ": same as happy but + 7 null values after found money");
     System.out.println(sad.toStringDebug() + ": same as sad");
     System.out.println(happy.get(0) + ": less homework");
-    System.out.println(sad.get(3) + ": null");
+    try {
+    System.out.println(sad.get(-1) + ": IndexOutOfBoundsException");
+  } catch (IndexOutOfBoundsException e) {
+    e.printStackTrace();
+  }
     System.out.println(happy.set(1, "graduated") + ": no homework");
+    try {
+    System.out.println(happy.set(16, "graduated") + "IndexOutOfBoundsException");
+  } catch (IndexOutOfBoundsException e) {
+    e.printStackTrace();
+  }
     System.out.println(sad.add("stuck in stuy") + ": true");
     for (int i = 0; i < 8; i++) {
       sad.add("sad");
@@ -40,6 +57,12 @@ public class Driver {
     System.out.println(happy.lastIndexOf("a") + ": -1");
     sad.add(3, "life");
     System.out.println(sad.size());
+    try {
+    sad.add(11, "life");
+    System.out.print("IndexOutOfBoundsException");
+  } catch (IndexOutOfBoundsException e) {
+    e.printStackTrace();
+  }
     sad.add(10, "life");
     happy.add(2, "life");
     happy.add(1, "life");
@@ -47,9 +70,18 @@ public class Driver {
     System.out.println(happy);
     sad.remove("life");
     sad.remove(1);
-    happy.remove(3);
+    try {
+    happy.remove(-2);
+    System.out.println("IndexOutOfBoundsException");
+  }catch (IndexOutOfBoundsException e) {
+    e.printStackTrace();
+  }
     happy.remove(2);
     System.out.println(sad);
     System.out.println(happy);
+    happy.add("less homework");
+    happy.add("less homework");
+    happy.add("less homework");
+    System.out.println(happy.remove("NO"));
   }
 }
