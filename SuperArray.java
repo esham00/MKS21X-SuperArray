@@ -138,28 +138,23 @@ public class SuperArray {
 		return lastI;
 	}
 	public void add(int index, String element) {
-		if (index < 0 || index >= size) {
+	    if (index != 0 && (index < 0 || index >= size )) {
 			throw new IndexOutOfBoundsException("Index is out of bounds");
 		}
-		if (data.length == 1 || index == data.length || data[data.length-1] != null) {
-			resize();//must add this bc function still runs even if index is larger or equal to size so (since the function isn't exited bc there's not proper error message)
+		String[] xin = new String[data.length+1];
+		for (int i = 0; i < xin.length; i++) {
+		    if (i == index) {
+			xin[i] = (element);
+		    }
+		    if (i < index) {
+			xin[i] = (data[i]);
+		    }
+		    if (i > index) {
+			xin[i] = (data[i-1]);
+		    }
 		}
-		String[] old = new String[data.length];
-		for (int i = 0; i < size; i++) {
-			old[i] = data[i];
-		}
+		data = xin;
 		size++;
-		for (int i = 0; i < size-1; i++) {
-			if (i >= index) {
-				data[i+1] = old[i];
-			}
-			else if (i < index) {
-				data[i] = old [i];
-			}
-			if (i == index) {
-				data[i] = element;
-			}
-		}
 	}
 	public String remove(int index) {
 		if (index < 0 || index >= size) {
@@ -179,7 +174,7 @@ public class SuperArray {
 		size -= 1;
 		return elementRemoved;
 	}
-	public boolean remove(String element) {
+    public boolean remove(String element) {
 		int index = indexOf(element);
 		if (index < 0) {
 			return false;
